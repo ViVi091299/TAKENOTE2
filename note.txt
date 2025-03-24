@@ -1,0 +1,13 @@
+Các lệnh thường dùng trong playwright:
+- Run test sử dụng lệnh: 
+npx playwright test: Chạy cả thư mục 
+npx playwright test {file path/file name}: Chạy với file cụ thể
+npx playwright test "{test case title}": Chạy với 1 test case cụ thể 
+npx playwright test --project {firefox/chromium/webkit}: Chạy 1 trình duyệt cụ thể 
+npx playwright test --project firefox --project webkit: Chạy nhiều trình duyệt 
+npx playwright show-report: showreport
+- Debug test: 
+npx playwright test {file path/file name} --ui: Debug test trong ui mode
+npx playwright test {file path/file name} --debug: Debug test với playwright inspector
+- Gen code: 
+npx playwright codegen --output=tests/gencode1.spec.tsts
