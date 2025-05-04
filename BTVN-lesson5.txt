@@ -1,42 +1,44 @@
 1. Sử dụng xpath với nhiều cách khác nhau để lấy ra các element sau: 
-- Thẻ a có text là "try it yourself" ở block CSS Example:
-Cách 1: 
-Cách 2: 
-- Lấy ra thẻ div có class = “w3-content”
-Cách 1: //div[@class='w3-content']
-Cách 2: //div[contains(@class, 'w3-content')]
-- Lấy ra thẻ có text contains “CSS Example” và tổ tiên là thẻ div có class = “w3-content”
-Cách 1: //div[@class='w3-content']//descendant::*[contains(text(), 'CSS Example')]
-2. 	Sử dụng tất cả các loại xpath axes để lấy ra các element sau:
-- Lấy ra element có text là “Try it Yourself” ở block CSS Example https://www.w3schools.com/
-Cách 1: 
-Cách 2: 
-- Lấy ra thẻ div có class = “w3-content” và có thẻ con cháu là thẻ có text contains “CSS Example”
-Cách 1: //div[@class='w3-content'][descendant::*[contains(text(), 'CSS Example')]]
-- Lấy ra thẻ div có thẻ con có text contains “CSS Example”
-Cách 1: //div[child::*[contains(text(), 'CSS Example')]]
-- Lấy ra tất cả các thẻ là anh chị em của thẻ có text contains “CSS Example”
-Cách 1: 
-- Lấy ra thẻ div cùng cấp theo sau thẻ có text contains “CSS Example”
+    - Thẻ a có text là "try it yourself" ở block CSS Example:
+        Cách 1: //a[text()='Try it Yourself']
+    - Lấy ra thẻ div có class = “w3-content”
+        Cách 1: //div[@class='w3-content']
+        Cách 2: //div[contains(@class, 'w3-content')]
+    - Lấy ra thẻ có text contains “CSS Example” và tổ tiên là thẻ div có class = “w3-content”
+        Cách 1: //div[@class='w3-content']//descendant::*[contains(text(), 'CSS Example')]
 
-- Lấy ra thẻ có text là “Get Certified” theo thẻ có text contains “CSS Example”
+2. 	Sử dụng tất cả các loại xpath axes để lấy ra các element sau:
+    - Lấy ra element có text là “Try it Yourself” ở block CSS Example https://www.w3schools.com/
+        Cách 1: //*[contains(text(), 'CSS Example')]/following::a[text()='Try it Yourself'][1]      
+    - Lấy ra thẻ div có class = “w3-content” và có thẻ con cháu là thẻ có text contains “CSS Example”
+        Cách 1: //div[@class='w3-content'][descendant::*[contains(text(), 'CSS Example')]]
+    - Lấy ra thẻ div có thẻ con có text contains “CSS Example”
+        Cách 1: //div[child::*[contains(text(), 'CSS Example')]]
+    - Lấy ra tất cả các thẻ là anh chị em của thẻ có text contains “CSS Example”
+        Cách 1: //*[contains(text(), 'CSS Example')]/parent::*/*[not(self::*)]
+    - Lấy ra thẻ div cùng cấp theo sau thẻ có text contains “CSS Example”
+        Cách 1: //*[contains(text(), 'CSS Example')]/following-sibling::div
+    - Lấy ra thẻ có text là “Get Certified” theo thẻ có text contains “CSS Example”
+        Cách 1: //*[contains(text(), 'CSS Example')]/following::a[contains(text(), 'Get Certified')][1]
 
 3. Lấy ra thẻ chứa text “CSS Reference” sử dụng tất cả các loại selector trên (lấy được theo nhiều cách nhất có thể)
+    Cách 1: //a[text()='CSS Reference']
+
 
 4. Giải thích các xpath dưới đây:
- - //*[normalize-space()="Search"]//button[2]
+    - //*[normalize-space()="Search"]//button[2]: Tìm bất kỳ phần tử nào (dấu *) có nội dung text chính xác là "Search", rồi tìm nút button thứ hai nằm bên trong nó.
 
- - //span[@uib-tooltip='Close']
+    - //span[@uib-tooltip='Close']: Tìm tất cả các thẻ span có thuộc tính uib-tooltip bằng "Close".
 
- - //*[normalize-space()='Policy - ${name}']
+    - //*[normalize-space()='Policy - ${name}']: Tìm phần tử có nội dung chính xác là "Policy - ${name}" (dữ liệu có thể được truyền từ biến name).
 
- - //*[@uib-tooltip='View actions']//span
+    - //*[@uib-tooltip='View actions']//span: Tìm bất kỳ phần tử nào có thuộc tính uib-tooltip="View actions" và chọn tất cả span con bên trong nó.
 
- - //input[@placeholder="Choose email..."]
+    - //input[@placeholder="Choose email..."]: Tìm thẻ input có placeholder đúng là "Choose email...".
 
- - (//*[descendant::p[normalize-space()="HOST"]]//*[contains(text(), "${hostName }")])[1]
+    - (//*[descendant::p[normalize-space()="HOST"]]//*[contains(text(), "${hostName }")])[1]: Tìm thẻ đầu tiên (do dùng [1]) có chứa đoạn văn p có nội dung "HOST", rồi trong thẻ đó, tìm phần tử chứa text là ${hostName }.
 
- - //*[@role="option"]//descendant::*[contains(text(),'${optionValue}')]
+    - //*[@role="option"]//descendant::*[contains(text(),'${optionValue}')]: Tìm phần tử có role="option" và trong tất cả con cháu của nó, tìm phần tử chứa text ${optionValue}.
 
- - //div[child::label//span[text()="${label}"]]//preceding-sibling::label//input[@type="checkbox"]
+    - //div[child::label//span[text()="${label}"]]//preceding-sibling::label//input[@type="checkbox"]: Tìm div có con là label chứa span với text là ${label}, rồi tìm input checkbox trong các label anh chị em trước đó của div đó.
 
